@@ -11,6 +11,14 @@ PETAL_WID_MEAN=1.20
 PETAL_WID_STD=0.76
 
 function main() {
+    preprocessDataset && ./main
+}
+
+function build() {
+    gcc -O2 **/*.c -o main
+}
+
+function preprocessDataset() {
     cat $DATASET | shuffle | removeCommas | standardize | oneHotSetosa > $OUT_DATASET
 }
 
